@@ -5,6 +5,10 @@ class EnvState:
     def __init__(self):
         self.agent1 = Agent("Player 1")
         self.agent2 = Agent("Player 2")
+        self.boardstate = BoardState()
+
+    def possible_actions(self, agent):
+        pass
 
 
 class Agent:
