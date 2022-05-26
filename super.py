@@ -1,19 +1,38 @@
+import copy
 # Contains Super classes that will be used in different case files
+
+
 class EnvState:
     # A state of the environment
     # Contains two agents and a board_state
     def __init__(self):
-        self.agent1 = Agent("Player 1")
-        self.agent2 = Agent("Player 2")
-        self.boardstate = BoardState()
+        self.agent1 = None
+        self.agent2 = None
+        self.boardstate = None
 
     def possible_actions(self, agent):
-        pass
+        return []
+
+    def next_turn(self):
+        return self.agent1
+
+    def start_clean(self):
+        self.agent1 = Agent("Player 1", True)
+        self.agent2 = Agent("Player 2", False)
+        self.boardstate = BoardState()
+
+    def copy(self):
+        return EnvState()
+
+    def is_finished(self):
+        return self.boardstate.is_finished()
 
 
 class Agent:
-    def __init__(self, name):
+    # Has a name and a boolean that determines if the Agent works for Max or Min reward
+    def __init__(self, name, if_max):
         self.name = name
+        self.plays_for_max = if_max
 
 
 class BoardState:
@@ -25,7 +44,11 @@ class BoardState:
     def get_reward(self):
         # gets the estimated 'reward' of the current state
         # positive rewards benefit Player 1, negative benefit Player 2
-        pass
+        return 0
+
+    def is_finished(self):
+        # tells whether any further moves can be made
+        return True
 
 
 class Action:
