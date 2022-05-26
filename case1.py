@@ -41,7 +41,7 @@ class MathGameState(super.EnvState):
 class MathGameBoard(super.BoardState):
     def __init__(self):
         self.score = 0
-        self.actions_remaining = 6
+        self.actions_remaining = 10
 
     def get_reward(self):
         # In this simple example, reward is the same as current score
@@ -86,8 +86,6 @@ def set_up():
     base_state = MathGameState()
     base_state.start_clean()
     # Construct list of possible actions
-    MathGameState.action_list.append(AcAddOne())
-    MathGameState.action_list.append(AcMultiplyMinusTwo())
-    MathGameState.action_list.append(AcSubtractThree())
+    MathGameState.action_list = [AcAddOne(), AcSubtractThree(), AcMultiplyMinusTwo()]
     # Return base state
     return base_state
